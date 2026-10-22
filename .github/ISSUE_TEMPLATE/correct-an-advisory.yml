@@ -1,0 +1,78 @@
+name: Correct an advisory
+description: A wrong version, a dead link, or a fix that has shipped since an advisory was published.
+title: "[correction] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the correction. This issue is public. Leave out credentials, private code and personal data.
+
+        Every advisory has an id. It is the `id` field in https://deepsweep.ai/advisories/v1/feed.json, for example `2026-10-21-php2shell`.
+  - type: input
+    id: entry_id
+    attributes:
+      label: Advisory id
+      placeholder: "2026-10-21-php2shell"
+    validations:
+      required: true
+  - type: dropdown
+    id: field
+    attributes:
+      label: What is wrong
+      multiple: true
+      options:
+        - Affected versions or fixed versions
+        - What a reader should do
+        - A source link
+        - Severity
+        - Title or summary
+        - Something else
+    validations:
+      required: true
+  - type: textarea
+    id: current
+    attributes:
+      label: What the advisory says now
+      description: Quote it.
+    validations:
+      required: true
+  - type: textarea
+    id: corrected
+    attributes:
+      label: What it should say
+    validations:
+      required: true
+  - type: textarea
+    id: primary_sources
+    attributes:
+      label: Primary sources for the correction
+      description: The vendor or project that owns the fix, or another record that stands on its own. One https link per line.
+    validations:
+      required: true
+  - type: textarea
+    id: verified
+    attributes:
+      label: What you checked yourself
+      description: For example, you read the new release notes or tested the fixed version. Say which.
+    validations:
+      required: true
+  - type: checkboxes
+    id: fact_check
+    attributes:
+      label: Before you submit
+      options:
+        - label: The correction is backed by a primary source I linked.
+          required: true
+        - label: This issue contains no credentials, private code or personal data.
+          required: true
+  - type: checkboxes
+    id: credit
+    attributes:
+      label: Credit
+      options:
+        - label: Credit me on the advisory, using the name below.
+  - type: input
+    id: display_name
+    attributes:
+      label: Name to show (optional)
+      description: Shown on the advisory and in the feed only if you ticked "Credit me". Up to 64 characters. No email and no @handle.

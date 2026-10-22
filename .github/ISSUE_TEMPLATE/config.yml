@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: A flaw in a DeepSweep product
+    url: https://deepsweep.ai/advisories/contribute#private
+    about: Please do not open a public issue. The page gives the private address.
+  - name: How reports are checked and credited
+    url: https://deepsweep.ai/advisories/contribute
+    about: Two primary sources, a reply within two business days, and credit if you ask for it.

@@ -1,0 +1,131 @@
+name: Report a security event
+description: A vulnerability, an emergency patch or an attack in the wild that the DeepSweep advisories feed has not covered.
+title: "[report] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting. This issue is public. Leave out credentials, private code and personal data.
+
+        A flaw in a DeepSweep product does not belong here. Email security@deepsweep.ai instead.
+
+        How a report is checked, how fast we reply and how credit works: https://deepsweep.ai/advisories/contribute
+  - type: input
+    id: title
+    attributes:
+      label: Title
+      description: One line. What happened and what fixes it.
+      placeholder: "Two critical PHP core RCEs, patch to 8.5.12 / 8.4.27 / 8.3.36 / 8.2.35"
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What is affected
+      options:
+        - A runtime or language (PHP, Node.js, Python...)
+        - A package or library
+        - Something else
+    validations:
+      required: true
+  - type: input
+    id: ecosystem
+    attributes:
+      label: Ecosystem
+      description: The package registry or runtime family.
+      placeholder: "npm, pypi, composer, php, node..."
+    validations:
+      required: true
+  - type: input
+    id: package
+    attributes:
+      label: Package or runtime name
+      placeholder: "php"
+    validations:
+      required: true
+  - type: textarea
+    id: versions
+    attributes:
+      label: Affected versions
+      description: One release line per row, with the first fixed version. Write "no release" where the project ships none and a vendor backport is the fix. Leave out lines the sources say nothing about.
+      placeholder: |
+        8.4: fixed in 8.4.27
+        8.1: no release, vendor backport
+    validations:
+      required: true
+  - type: textarea
+    id: primary_sources
+    attributes:
+      label: Primary sources
+      description: The vendor or project that owns the fix, and one more record that stands on its own, such as the CVE entry or the upstream commit. One https link per line. Press coverage goes in the next box.
+      placeholder: |
+        https://www.php.net/archive/2026.php
+        https://www.cve.org/CVERecord?id=CVE-...
+    validations:
+      required: true
+  - type: textarea
+    id: other_sources
+    attributes:
+      label: Other coverage (optional)
+      description: Press or researcher write-ups. Useful context. Never the source.
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Suggested severity
+      description: We set the final severity from the vendor's rating and what is being exploited.
+      options:
+        - critical
+        - high
+        - medium
+        - low
+        - not sure
+    validations:
+      required: true
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: Two or three sentences. What it is, who is exposed, and whether attacks are reported.
+    validations:
+      required: true
+  - type: textarea
+    id: actions
+    attributes:
+      label: What a reader should do
+      description: One action per line.
+      placeholder: |
+        Update PHP to 8.4.27 or later
+        On older branches take your vendor's backport
+    validations:
+      required: true
+  - type: textarea
+    id: verified
+    attributes:
+      label: What you checked yourself
+      description: For example, you read the vendor advisory, compared the fixed versions, or reproduced the fix on a test install. Say which.
+    validations:
+      required: true
+  - type: checkboxes
+    id: fact_check
+    attributes:
+      label: Before you submit
+      options:
+        - label: Every claim above is backed by one of the primary sources I linked.
+          required: true
+        - label: I linked at least one primary source from the vendor or project that owns the fix.
+          required: true
+        - label: This issue contains no credentials, private code or personal data.
+          required: true
+        - label: This is not a flaw in a DeepSweep product. Those go to security@deepsweep.ai.
+          required: true
+  - type: checkboxes
+    id: credit
+    attributes:
+      label: Credit
+      options:
+        - label: Credit me on the advisory, using the name below.
+  - type: input
+    id: display_name
+    attributes:
+      label: Name to show (optional)
+      description: Shown on the advisory and in the feed only if you ticked "Credit me". Up to 64 characters. No email and no @handle.
